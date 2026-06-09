@@ -643,19 +643,18 @@ export default function SupportWidget({
       )}
 
 
-      <button
-        className={styles.fab}
-        onClick={toggleOpen}
-        aria-label="Open chat"
-      >
-        {open
-          ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          : <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-        }
-        {!open && unread > 0 && (
-          <span className={styles.fabBadge}>{unread}</span>
-        )}
-      </button>
+      {!open && (
+        <button
+          className={styles.fab}
+          onClick={toggleOpen}
+          aria-label="Open chat"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+          {unread > 0 && (
+            <span className={styles.fabBadge}>{unread}</span>
+          )}
+        </button>
+      )}
     </>
   )
 

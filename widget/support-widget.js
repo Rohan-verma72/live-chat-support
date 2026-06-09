@@ -268,26 +268,20 @@
     }
 
     fab.addEventListener("click", () => {
-      chatWindow.classList.toggle("lcw-hidden");
-      if (!chatWindow.classList.contains("lcw-hidden")) {
-        if (view === "chat" && activeSessionId) {
-          input.focus();
-          scrollToBottom();
-          socket.emit("session:seen", { sessionId: activeSessionId, role: "visitor" });
-        } else {
-          handleAutoFlow();
-        }
+      chatWindow.classList.remove("lcw-hidden");
+      fab.classList.add("lcw-hidden");
+      if (view === "chat" && activeSessionId) {
+        input.focus();
+        scrollToBottom();
+        socket.emit("session:seen", { sessionId: activeSessionId, role: "visitor" });
       } else {
-        if (myTyping && activeSessionId) {
-          myTyping = false;
-          if (typingTimeout) clearTimeout(typingTimeout);
-          socket.emit("typing:status", { sessionId: activeSessionId, isTyping: false, from: "visitor" });
-        }
+        handleAutoFlow();
       }
     });
     
     closeButton.addEventListener("click", () => {
       chatWindow.classList.add("lcw-hidden");
+      fab.classList.remove("lcw-hidden");
       if (myTyping && activeSessionId) {
         myTyping = false;
         if (typingTimeout) clearTimeout(typingTimeout);
