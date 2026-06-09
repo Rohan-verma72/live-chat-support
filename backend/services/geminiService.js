@@ -16,7 +16,6 @@ export async function generateAIResponse(session, visitorMessage) {
 
   const messages = [];
 
-  // System instruction / system prompt
   messages.push({
     role: "system",
     content: `You are an expert AI Customer Support Assistant for our company. Your name is AI Support.
@@ -71,7 +70,6 @@ IMPORTANT TRANSFER RULES:
   }
 
   if (messages.length === 1) {
-    // Only system message, add a dummy user greeting
     messages.push({
       role: "user",
       content: "Hello"

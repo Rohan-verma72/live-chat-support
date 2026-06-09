@@ -247,10 +247,9 @@ export async function transferToHuman(sessionId, io) {
       const { pushSystemMessage } = await import("./messageService.js");
       await pushSystemMessage(sessionId, "Chat transferred to a human agent. An agent will join shortly.", io);
       
-      const latest = await ChatSession.findOne({ sessionId });
-      emitSessionUpdate(latest, io);
+      emitSessionUpdate(updated, io);
       io.to("agents").emit("sessions:update", await fetchAllSessions());
-      return latest;
+      return updated;
     } else {
       // Outside of support hours
       const { pushSystemMessage } = await import("./messageService.js");

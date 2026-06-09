@@ -192,6 +192,7 @@
   let isCreating = false;
   let sessionsLoaded = false;
   let widgetReplyTo = null;
+  let setWidgetReplyTo = null;
 
   loadSocketIo(baseUrl, startChat);
 
@@ -586,7 +587,7 @@
       }
     }
 
-    function setWidgetReplyTo(msg) {
+    setWidgetReplyTo = function(msg) {
       widgetReplyTo = msg;
       if (msg) {
         let replyBar = chatPanel.querySelector(".lcw-composer-reply-bar");
